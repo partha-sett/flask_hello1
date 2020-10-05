@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<form class="form-inline">
+<!--First Name-->
+<div class="form-group">
+<label class="sr-only" for="w3review">Enter text</label>
+&nbsp;&nbsp;<textarea id="w3review" name="w3review" rows="4" cols="100">
+
+</textarea>
+</div>
+
+
+<!--Submit Button-->
+<br><button type="submit" class="btn btn-default">Submit</button>
+</form>
+</br>
+<div id="output"></div>
+</br>
+</body>
+<script>
+$(document).ready(function() {
+     $('form').on('submit', function(event) {
+       $.ajax({
+          data : {
+             textString : $('#w3review').val(),
+             
+                 },
+             type : 'POST',
+             url : 'http://127.0.0.1:5000/hello'
+            })
+        .done(function(data) {
+		  
+          $('#output').text(data).show();
+      });
+      event.preventDefault();
+      });
+});
+
+</script>
+</html>
